@@ -167,6 +167,8 @@ autocmd BufWritePre * :call <SID>RemoveWhiteSpace()
 
 let g:pymode_syntax_print_as_function = 1
 let g:pymode_lint=0
+let g:pymode_doc = 0
+let g:pymode_folding = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
