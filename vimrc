@@ -170,6 +170,7 @@ function! s:RemoveWhiteSpace()
 endfunction
 autocmd BufWritePre * :call <SID>RemoveWhiteSpace()
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN: Pymode
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -178,6 +179,8 @@ let g:pymode_syntax_print_as_function = 1
 let g:pymode_doc = 0
 let g:pymode_folding = 0
 let g:pymode_rope_guess_project = 0
+let g:pymode_lint_cwindow = 0
+let g:pymode_doc = 0
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -439,4 +442,4 @@ nmap <silent> <S-Down> :call DoWindowSwap()<CR>
 " Loads bepo key mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-source ~/.vim/bepo.vim
+"source ~/.vim/bepo.vim
