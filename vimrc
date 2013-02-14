@@ -8,7 +8,7 @@ execute pathogen#infect()
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Modeline
+" Autocommands
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 if has("autocmd")
@@ -51,12 +51,12 @@ set guioptions-=T
 set guioptions-=R
 set guioptions-=L
 
-
 " Syntax coloring
 syntax on
 
 if has("gui_running")
 	colorschem wombat
+	set cursorline
 else
 	if &term =~ "xterm"
 		set t_Co=256
