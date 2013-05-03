@@ -58,8 +58,10 @@ if has("gui_running")
 	colorschem wombat
 	set cursorline
 else
-	if &term =~ "xterm"
+	if &term =~ "xterm" || &term =~ "rxvt-unicode-256color"
 		set t_Co=256
+		colorschem wombat256
+		set cursorline
 	endif
 endif
 
@@ -324,17 +326,33 @@ vmap < <gv
 nnoremap <silent> <Leader>s :set invhls<cr>:exec "let @/='\\<".expand("<cword>")."\\>'"<cr>
 
 " Enable or disable indentation guides
-nnoremap <silent> <Leader>g :IndentGuidesToggle<CR>
+nnoremap <silent> <Leader>i :IndentGuidesToggle<CR>
 
 " Enable or disable taglist window
 nnoremap <silent> <F9> :TagbarToggle<CR>
-nnoremap <silent> <Leader>b :TagbarToggle<CR>
+nnoremap <silent> tt :TagbarToggle<CR>
 
-" Go to redefinition mapping
-inoremap <silent> g) <C-w><C-]>
+" Toggles gundo
+nnoremap <silent> <Leader>g :GundoToggle<CR>
 
-" Toggle paste mode on and off
-map <leader>pp :setlocal paste!<cr>
+" Go to next mark
+nnoremap <Leader>n ]'
+nnoremap <Leader>N ['
+
+" Enable or disable show marks
+let g:showmarks_toggled = 0
+
+function! ToggleShowMarks()
+	if g:showmarks_toggled == 0
+		silent DoShowMarks!
+		let g:showmarks_toggled = 1
+	else
+		silent NoShowMarks!
+		let g:showmarks_toggled = 0
+	endif
+endfunction
+command! ToggleShowMarks call ToggleShowMarks()
+nnoremap <Leader>m :ToggleShowMarks<CR>
 
 " Mouse and copy/paste control
 if has("gui_running")
@@ -361,8 +379,7 @@ function! ToggleNu()
 	endif
 endfunction
 command! ToggleNu call ToggleNu()
-
-nnoremap <Silent> <Leader>n :ToggleNu()<CR>
+"nnoremap <Silent> <Leader>n :ToggleNu<CR>
 
 " Saves current vim session
 nnoremap <Silent> <Leader>b :mksession! ~/Session.vim<CR>

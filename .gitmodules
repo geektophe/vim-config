@@ -43,3 +43,6 @@
 [submodule "bundle/tagbar"]
 	path = bundle/tagbar
 	url = https://github.com/vim-scripts/Tagbar.git
+[submodule "bundle/vim-showmarks"]
+	path = bundle/vim-showmarks
+	url = https://github.com/jacquesbh/vim-showmarks.git
