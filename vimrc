@@ -17,7 +17,6 @@ if has("autocmd")
 endif
 
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Modeline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -56,7 +55,12 @@ syntax on
 
 if has("gui_running")
 	colorschem wombat
-	set cursorline
+
+	augroup BgHighlight
+		autocmd!
+		autocmd WinEnter * set cursorline
+		autocmd WinLeave * set nocursorline
+	augroup END
 else
 	if &term =~ "xterm" || &term =~ "rxvt-unicode-256color"
 		set t_Co=256
@@ -65,7 +69,7 @@ else
 	endif
 endif
 
-" Displayes ruler
+" Displays ruler
 set ruler
 
 " Highlight end of line whitespace.
