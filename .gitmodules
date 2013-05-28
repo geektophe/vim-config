@@ -46,3 +46,6 @@
 [submodule "bundle/vim-showmarks"]
 	path = bundle/vim-showmarks
 	url = https://github.com/jacquesbh/vim-showmarks.git
+[submodule "bundle/nagios-syntax"]
+	path = bundle/nagios-syntax
+	url = https://github.com/vim-scripts/nagios-syntax.git
