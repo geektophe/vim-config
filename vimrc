@@ -464,3 +464,7 @@ nmap <silent> <S-Down> :call DoWindowSwap()<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "source ~/.vim/bepo.vim
+
+if filereadable($HOME . "/.vimrc.local")
+	source $HOME/.vimrc.local
+endif
