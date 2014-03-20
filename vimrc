@@ -281,7 +281,8 @@ let g:lightline = {
       \ 'component': {
       \   'readonly': '%{&filetype=="help"?"":&readonly?"":""}',
       \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
-      \   'fugitive': '%{exists("*fugitive#head")?" ".fugitive#head():""}'
+      \   'fugitive': '%{exists("*fugitive#head")?" ".fugitive#head():""}',
+      \   'filename': '[%n] %f'
       \ },
       \ 'component_visible_condition': {
       \   'readonly': '(&filetype != "help" && &readonly)',
@@ -299,6 +300,13 @@ let g:lightline = {
 
 let g:acp_enableAtStartup = 1
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" PLUGIN: ACP
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:ctrlp_map = '<c-p>'
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Key mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -315,21 +323,21 @@ set backspace=indent,eol,start
 set splitbelow
 set splitright
 
-map <C-Down> <C-w>j
-map <C-Up> <C-w>k
-map <C-Right> <C-w>l
-map <C-Left> <C-w>h
-map <C-q> <C-w>q
-map <C-m> <C-w>_
+map <silent> <C-Down> <C-w>j
+map <silent> <C-Up> <C-w>k
+map <silent> <C-Right> <C-w>l
+map <silent> <C-Left> <C-w>h
+map <silent> <C-q> <C-w>q
+map <silent> <C-m> <C-w>_
 
 "map <C-S-Down> <C-w>J
 "map <C-S-Up> <C-w>K
 "map <C-S-Right> <C-w>L
 "map <C-S-Left> <C-w>H
 
-map <S-Left>  :bprev<cr>
-map <S-Right> :bnext<cr>
-map <C-k> :Bclose<cr><c-w>l
+map <silent> <S-Left>  :bprev<cr>
+map <silent> <S-Right> :bnext<cr>
+map <silent> <C-k> :Bclose<cr><c-w>l
 
 set winaltkeys=no
 map <silent> <M-Up> :3wincmd +<cr>
@@ -363,8 +371,11 @@ nnoremap <silent> tt :TagbarToggle<CR>
 nnoremap <silent> <Leader>g :GundoToggle<CR>
 
 " Go to next mark
-nnoremap <Leader>n ]'
-nnoremap <Leader>N ['
+nnoremap <silent> <Leader>n ]'
+nnoremap <silent> <Leader>N ['
+
+" Fuzzy buffer search
+nnoremap <silent> <leader>d :CtrlPBuffer<CR>
 
 " Enable or disable show marks
 let g:showmarks_toggled = 0
@@ -379,7 +390,7 @@ function! ToggleShowMarks()
 	endif
 endfunction
 command! ToggleShowMarks call ToggleShowMarks()
-nnoremap <Leader>m :ToggleShowMarks<CR>
+nnoremap <silent> <Leader>m :ToggleShowMarks<CR>
 
 " Mouse and copy/paste control
 if has("gui_running")
@@ -480,7 +491,6 @@ endfunction
 nmap <silent> <S-Up> :call MarkWindowSwap()<CR>
 nmap <silent> <S-Down> :call DoWindowSwap()<CR>
 "nmap <silent> <S-Up> :call WindowSwap()<CR>
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Loads bepo key mappings
