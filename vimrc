@@ -260,7 +260,7 @@ if ! &diff
 	set laststatus=2
 	"set statusline=%{buftabs#statusline()}%<%=%-16(%h%m%r%)%-12.(%l,%c%)\ %P
 
-	let g:buftabs_in_statusline   = 1
+	let g:buftabs_in_statusline   = 0
 	let g:buftabs_only_basename   = 1
 	let g:buftabs_marker_start    = '['
 	let g:buftabs_marker_end      = ']'
@@ -281,8 +281,7 @@ let g:lightline = {
       \ 'component': {
       \   'readonly': '%{&filetype=="help"?"":&readonly?"":""}',
       \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
-      \   'fugitive': '%{exists("*fugitive#head")?" ".fugitive#head():""}',
-      \   'filename': '%{buftabs#statusline()}'
+      \   'fugitive': '%{exists("*fugitive#head")?" ".fugitive#head():""}'
       \ },
       \ 'component_visible_condition': {
       \   'readonly': '(&filetype != "help" && &readonly)',
