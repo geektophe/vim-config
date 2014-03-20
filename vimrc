@@ -258,23 +258,47 @@ let g:pylint_onwrite = 0
 
 if ! &diff
 	set laststatus=2
-	set statusline=%{buftabs#statusline()}%<%=%-16(%h%m%r%)%-12.(%l,%c%)\ %P
+	"set statusline=%{buftabs#statusline()}%<%=%-16(%h%m%r%)%-12.(%l,%c%)\ %P
 
 	let g:buftabs_in_statusline   = 1
+	let g:buftabs_only_basename   = 1
 	let g:buftabs_marker_start    = '['
 	let g:buftabs_marker_end      = ']'
 	let g:buftabs_separator       = ' '
-	let g:buftabs_marker_modified = '*'
-	let g:buftabs_only_basename   = 1
+	let g:buftabs_marker_modified = ''
 endif
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" PLUGIN: Lightlime
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:lightline = {
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'fugitive' ], [ 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component': {
+      \   'readonly': '%{&filetype=="help"?"":&readonly?"":""}',
+      \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
+      \   'fugitive': '%{exists("*fugitive#head")?" ".fugitive#head():""}',
+      \   'filename': '%{buftabs#statusline()}'
+      \ },
+      \ 'component_visible_condition': {
+      \   'readonly': '(&filetype != "help" && &readonly)',
+      \   'modified': '(&filetype != "help" && (&modified || !&modifiable))',
+      \   'fugitive': '(exists("*fugitive#head") && "" != fugitive#head())'
+      \ },
+      \ 'separator': { 'left': '', 'right': '' },
+      \ 'subseparator': { 'left': '', 'right': '' }
+      \ }
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN: ACP
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:acp_enableAtStartup = 0
-
+let g:acp_enableAtStartup = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Key mappings
