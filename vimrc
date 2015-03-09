@@ -53,6 +53,9 @@ set guioptions-=L
 " Syntax coloring
 syntax on
 
+" Disables bell
+set visualbell
+
 if has("gui_running")
 	colorschem wombat
 
@@ -362,9 +365,11 @@ map <silent> <C-m> <C-w>_
 "map <C-S-Right> <C-w>L
 "map <C-S-Left> <C-w>H
 
-map <silent> <S-Left>  :bprev<cr>
 map <silent> <S-Right> :bnext<cr>
-map <silent> <C-k> :Bclose<cr><c-w>l
+map <silent> <S-Left>  :bprev<cr>
+map <silent> gt :bnext<cr>
+map <silent> gT :bprev<cr>
+map <silent> <C-k> :bclose<cr><c-w>l
 
 set winaltkeys=no
 map <silent> <M-Up> :3wincmd +<cr>
