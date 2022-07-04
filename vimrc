@@ -65,10 +65,11 @@ if has("gui_running")
 		autocmd WinLeave * set nocursorline
 	augroup END
 else
-	if &term =~ "xterm" || &term =~ "rxvt-unicode-256color"
+	if has("termguicolors")
 		set t_Co=256
 		colorschem wombat256
 		set cursorline
+		"set lazyredraw
 	endif
 endif
 
@@ -101,7 +102,8 @@ else
 	set guifont=Deja\ Vu\ Sans\ Mono\ 9
 endif
 
-set wildmenu
+"set wildmenu
+set wildchar=<Tab> wildmenu wildmode=longest,full
 set nu
 
 " Always show some lines above or below the cursor.
@@ -352,6 +354,22 @@ set backspace=indent,eol,start
 " Windows move mappings
 set splitbelow
 set splitright
+
+" Alt to buffer mapping
+nnoremap <leader>" :buffer 1<cr>
+nnoremap <leader>« :buffer 2<cr>
+nnoremap <leader>» :buffer 3<cr>
+nnoremap <leader>( :buffer 4<cr>
+nnoremap <leader>) :buffer 5<cr>
+nnoremap <leader>@ :buffer 6<cr>
+nnoremap <leader>+ :buffer 7<cr>
+nnoremap <leader>- :buffer 8<cr>
+nnoremap <leader>/ :buffer 9<cr>
+nnoremap <leader>* :buffer 10<cr>
+nnoremap <leader>= :buffer 11<cr>
+nnoremap <leader>% :buffer 12<cr>
+nnoremap <leader><PageUp> :bfirst<cr>
+nnoremap <leader><PageDown> :blast<cr>
 
 map <silent> <C-Down> <C-w>j
 map <silent> <C-Up> <C-w>k
