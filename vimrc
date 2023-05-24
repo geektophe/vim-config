@@ -173,21 +173,34 @@ set showmatch
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Mail filetytpe detection
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd BufNewFile,BufRead neomutt-* setf mail
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Removes trailing white spaces on save
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "auto remove whitespace at the end of line before :w,
 "it also save email signiture spliter "-- "
+"function! s:RemoveWhiteSpace()
+"    let save_cursor = getpos(".")
+"    %s/\s\+$//e
+"    if &filetype == 'mail'
+"        %s/^--$/-- /e
+"    endif
+"    call setpos(".", save_cursor)
+"endfunction
 function! s:RemoveWhiteSpace()
-    let save_cursor = getpos(".")
-    %s/\s\+$//e
     if &filetype == 'mail'
-        %s/^--$/-- /e
+        return
     endif
-    call setpos(".", save_cursor)
+    let cursor_pos = getpos(".")
+    %s/\s\+$//e
+    call setpos(".", cursor_pos)
 endfunction
 autocmd BufWritePre * :call <SID>RemoveWhiteSpace()
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN: Pymode
@@ -337,6 +350,19 @@ function! AirlineThemePatch(palette)
     endfor
   endif
 endfunction
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" PLUGIN: VimWiki
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:vimwiki_list = [
+  \ {'path': '~/Documents/vimwiki/work', 'list_margin': 2},
+  \ {'path': '~/Documents/vimwiki/perso', 'list_margin': 2},
+  \ {'path': '~/Documents/vimwiki/copro', 'list_margin': 2}
+\]
+let g:vimwiki_hl_headers = 1
+let g:vimwiki_hl_cb_checked = 2
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
